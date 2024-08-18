@@ -1,9 +1,7 @@
-import Image from "next/image";
-import getAnalytics from '@/services/getAnalytics'
+/**
+ * @fileoverview Login page
+ */
 
-export default async function Home() {
-  const data = await getAnalytics()
-  return (
-    <h1 className="text-white text-xl">{data}</h1>
-  );
+export default async function LoginPage() {
+  return <h1> login page!</h1>
 }
