@@ -1,15 +1,18 @@
 'use client'
+
 import { useState } from 'react'
 
 interface Props {
   styles: string
   code: string
-  image?:string
+  image?: string
 }
 
 const ProductImage = (props: Props) => {
   const { styles } = props
-  const [src, setSrc] = useState(`https://esperanzadistri.com.ar/medicamentos/uploads/${props.code}.jpg`)
+  const [src, setSrc] = useState(
+    `https://esperanzadistri.com.ar/medicamentos/uploads/${props.code}.jpg`
+  )
   const [fallbackIndex, setFallbackIndex] = useState(0)
 
   const IMAGE_FALLBACKS = [
@@ -25,10 +28,19 @@ const ProductImage = (props: Props) => {
       return
     }
     setSrc(IMAGE_FALLBACKS[fallbackIndex])
-    setFallbackIndex((prevIndex) => prevIndex + 1)
+    setFallbackIndex(prevIndex => prevIndex + 1)
   }
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img className={styles} src={src} onError={onError} width={200} height={200} alt="Farmavet placeholder" />
+
+  return (
+    <img
+      className={styles}
+      src={src}
+      onError={onError}
+      width={200}
+      height={200}
+      alt="Farmavet placeholder"
+    />
+  )
 }
 
 export default ProductImage

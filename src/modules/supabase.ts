@@ -1,10 +1,19 @@
+import env from './env'
+
 import { SupabaseClient } from '@supabase/supabase-js'
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_KEY
+export async function getSupaClient() {
+  const client = new SupabaseClient(
+    env.NEXT_PUBLIC_SUPABASE_URL_SUPABASE_URL,
+    env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  )
 
-if (!SUPABASE_URL || !SUPABASE_KEY) {
-  throw new Error('Missing env variables for Supabase')
+  return client
 }
 
-const supabaseClient = new SupabaseClient(SUPABASE_URL, SUPABASE_KEY)
+export async function getProductList() {
+  const client = await getSupaClient()
+  const { data, error } = await client.from('Products').select('*').limit(10)
+  console.log(data)
+  return ''
+}
